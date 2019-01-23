@@ -46,7 +46,7 @@ header h1 {
   font-size: 60px;
   margin: 0.2em;
   text-align: center;
-  background-image: linear-gradient(135deg, deeppink, dodgerblue);
+  background-image: linear-gradient(200deg, deeppink, dodgerblue);
   background-clip: text;
   -webkit-background-clip: text;
   box-decoration-break: clone;
@@ -161,7 +161,6 @@ header h4 {
 }
 
 select {
-  margin-right: 20px;
   padding: 5px 8px;
   border: none;
   box-shadow: none;
@@ -173,9 +172,4 @@ select {
 
 select:focus {
   outline: none;
-}
-
-option {
-  font-family: 'Alfa Slab One', cursive;
-  font-size: 1em;
 }
