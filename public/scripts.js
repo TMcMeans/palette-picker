@@ -44,10 +44,8 @@ const generatePaletteColors = () => {
   colorBlocks.forEach(block => {
     if ($(`${block} > i`).hasClass('fa-unlock')) {
       const hexCode = getRandomHexCode()
-      //change the background color of the block
-      //change the innerText of the child p tag to the hexCode
       $(block).css('background-color', `${hexCode}`)
-
+      $(`${block} > p`).text(`${hexCode}`)
     }
   })
 }
