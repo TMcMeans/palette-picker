@@ -15,13 +15,7 @@ $('.fa').on('click', (e) => {
   }
 })
 
-//create an event listener on the generate new palette button that on click will go through each of the big-color-block divs:
-//check if big-color-block div i child has a class of 'fa-unlock' 
-//if it has a i child with a class of 'fa-unlock' then call a function that will generate a random hex code and set that div's background color to the random hex code
-
-
 $('#generate-palette-btn').on('click', (e) => {
-  console.log(e.target)
   e.preventDefault();
 
   generatePaletteColors()
@@ -44,7 +38,7 @@ const getRandomHexCode = () => {
   return hexCode;
 }
 
-const generatePaletteColors = (hexCode) => {
+const generatePaletteColors = () => {
   const colorBlocks = ['.block1', '.block2', '.block3', '.block4', '.block5']
 
   colorBlocks.forEach(block => {
@@ -52,6 +46,8 @@ const generatePaletteColors = (hexCode) => {
       const hexCode = getRandomHexCode()
       //change the background color of the block
       //change the innerText of the child p tag to the hexCode
+      $(block).css('background-color', `${hexCode}`)
+
     }
   })
 }
