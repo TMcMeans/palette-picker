@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+@import url("https://fonts.googleapis.com/css?family=Kavoon|Mouse+Memoirs");
+
+/* universal styles */
+
+body {
+  font-family: "Kavoon", cursive;
+  /* background: #171717; */
+  border: 12px double #ad2bb0;
+  height: 100vh;
+  margin: 10px;
+}
+
+input[type=text] {
+  height: 40px;
+  width: 400px;
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 16px;
+  border: 3px solid #ad2bb0;
+  border-right: none;
+}
+
+input[type=text]::placeholder {
+  color: #883FC2;
+  font-size: 16px;
+}
+
+input[type=submit] {
+  cursor: pointer;
+  width: 140px;
+  border: 3px solid #ad2bb0;
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 18px;
+  color: #883FC2;
+  padding: 5px;
+}
+
+/* header styles */
+
+header {
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-family: "Kavoon", cursive;
+  font-size: 60px;
+  margin: 0.2em;
+  text-align: center;
+  background-image: linear-gradient(135deg, deeppink, dodgerblue);
+  background-clip: text;
+  -webkit-background-clip: text;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  color: transparent;
+}
+
+header h4 {
+  text-align: center;
+  background-image: linear-gradient(135deg, deeppink, dodgerblue);
+  background-clip: text;
+  -webkit-background-clip: text;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  color: transparent;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.new-project-input {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* big palette section styles */
+
+.color-palette-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.color-palette-section button {
+  margin: 20px auto 0 auto;
+  cursor: pointer;
+  width: 250px;
+  border: 3px solid #ad2bb0;
+  border-right: none;
+  border-left: none;
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 18px;
+  color: #883FC2;
+  padding: 5px;
+}
+
+.big-palette-container {
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+}
+
+.big-color-block {
+  width: 20%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-content: flex-end;
+}
+
+.big-color-block p {
+  text-align: center;
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 1.2em;
+}
+
+.big-color-block i {
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+
+.block1 {
+  background-color: #495867;
+}
+
+.block2 {
+  background-color: #577399;
+}
+
+.block3 {
+  background-color: #bdd5ea;
+}
+
+.block4 {
+  background-color: #f7f7ff;
+}
+.block5 {
+  background-color: #fe5f55;
+}
+
+/* new palette section styles */
+
+.new-palette-section {
+  margin-top: 20px;
+  display: flex; 
+  flex-direction: row;
+  justify-content: center;
+}
+
+.new-palette-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#new-palette-submit {
+  margin-right: 160px;
+}
+
+select {
+  margin-right: 20px;
+  padding: 5px 8px;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  -webkit-border-radius: 0px;
+  border: 3px solid #ad2bb0;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+}
+
+option {
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 1em;
+}
