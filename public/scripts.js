@@ -31,3 +31,27 @@ $('#generate-palette-btn').on('click', (e) => {
 
 /* Helper methods */
 
+const getRandomHexCode = () => {
+  let hexCode = '#';
+  const hexValues = ['a', 'b', 'c', 'd', 'e', 'f', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  for (var i = 0; i < 6; i++) {
+    const randomIndex = Math.floor(Math.random() * hexValues.length)
+
+    hexCode += hexValues[randomIndex]
+  }
+
+  return hexCode;
+}
+
+const generatePaletteColors = (hexCode) => {
+  const colorBlocks = ['.block1', '.block2', '.block3', '.block4', '.block5']
+
+  colorBlocks.forEach(block => {
+    if ($(`${block} > i`).hasClass('fa-unlock')) {
+      const hexCode = getRandomHexCode()
+      //change the background color of the block
+      //change the innerText of the child p tag to the hexCode
+    }
+  })
+}
