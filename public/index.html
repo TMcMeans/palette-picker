@@ -2,12 +2,61 @@
 <html>
 
 <head>
-  <title>Express Intro</title>
+  <title>Palette Picker</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
 </head>
 
 <body>
-  <h1>My Static File</h1>
+
+  <header>
+    <h1>Palette Picker</h1>
+    <h4>Create a new project here</h4>
+    <form class="new-project-input" action="" method="">
+      <input type="text" placeholder="New project name" required>
+      <input type="button" value="Save project">
+    </form>
+  </header>
+
+  <section class="color-palette-section">
+    <div class="big-palette-container">
+      <div class="big-color-block"></div>
+      <div class="big-color-block"></div>
+      <div class="big-color-block"></div>
+      <div class="big-color-block"></div>
+      <div class="big-color-block"></div>
+    </div>
+    <button>Generate a new palette</button>
+  </section>
+
+  <section class="save-palette-section">
+    <select id="project-select">
+      <option value="">--Select a project--</option>
+      <option value="project1">Project #1</option>
+    </select>
+    <form action="" method="">
+      <input type="text" placeholder="New palette name">
+      <input type="submit" value="save palette">
+    </form>
+
+    <section class="saved-projects-section">
+      <div class="saved-palette">
+        <h4>Project #1</h4>
+        <div class="small-palette-container">
+          <div class="small-palette-wrapper">
+            <div class="small-color-block"></div>
+            <div class="small-color-block"></div>
+            <div class="small-color-block"></div>
+            <div class="small-color-block"></div>
+            <div class="small-color-block"></div>
+          </div>
+          <p>Warm Palette</p>
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </div>
+      </div>
+    </section>
+
 </body>
 
 </html>
