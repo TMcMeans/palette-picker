@@ -1,11 +1,12 @@
 /* Event Listeners */
-
 $('#save-project-form').on('submit', (e) => {
-  e.preventDefault()
-  const projectName = $('#project-name-input').val()
+  e.preventDefault();
+  const newProject = $('#project-name-input').val();
+
   //Create a POST request to send the project to the server database as a record 
-  $('#project-name-input').val("")
-  $('#project-select').append(`<option>${projectName}</option>`)
+
+  $('#project-name-input').val("");
+  $('#project-select').append(`<option>${newProject}</option>`);
 })
 
 $('.fa').on('click', (e) => {
@@ -19,13 +20,22 @@ $('.fa').on('click', (e) => {
 $('#generate-palette-btn').on('click', (e) => {
   e.preventDefault();
 
-  generatePaletteColors()
+  generatePaletteColors();
+})
+
+$('#new-palette-form').on('submit', (e) => {
+  e.preventDefault();
+
+  const projectName = $('#project-select option:selected').text()
+  const paletteName = $('#new-palette-input').val();
+
+  //Make a POST request to send the palette name and foreign key (connecting to project name) to database
+
+  //Make a GET request to pull all of the palettes and projects and post them to DOM
 })
 
 
-
 /* Helper methods */
-
 const getRandomHexCode = () => {
   let hexCode = '#';
   const hexValues = ['a', 'b', 'c', 'd', 'e', 'f', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
