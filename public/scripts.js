@@ -28,6 +28,9 @@ $('#new-palette-form').on('submit', (e) => {
 
   const projectName = $('#project-select option:selected').text()
   const paletteName = $('#new-palette-input').val();
+  const colorCodes = saveColorPalette();
+
+  //CALL HELPER METHOD TO GRAB ALL 5 HEX CODE VALUES FROM PALETTE TO BE SENT TO DATABASE
 
   //Make a POST request to send the palette name and foreign key (connecting to project name) to database
 
@@ -59,4 +62,10 @@ const generatePaletteColors = () => {
       $(`${block} > p`).text(`${hexCode}`)
     }
   })
+}
+
+const saveColorPalette = () => {
+  // GRAB ALL 5 HEX CODE VALUES FROM PALETTE TO BE SENT TO DATABASE
+  //Figure out how to do a querySelectorAll to grab the innerText of each p tag in the color divs
+  const palette = [];
 }
