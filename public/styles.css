@@ -161,13 +161,25 @@ header h4 {
 }
 
 select {
-  padding: 5px 8px;
-  border: none;
-  box-shadow: none;
-  background: transparent;
-  -webkit-border-radius: 0px;
-  border: 3px solid #ad2bb0;
-  cursor: pointer;
+  -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #FAFAFA 40%, #FAFAFA);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 3px solid #ad2bb0;
+   color: #883FC2;
+   font-size: 0.7em;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 150px;
+   font-family: 'Alfa Slab One', cursive;
+   border-right: none;
 }
 
 select:focus {
