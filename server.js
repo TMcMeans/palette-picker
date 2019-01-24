@@ -24,15 +24,15 @@ app.delete('/api/v1/projects/:projectid', (request, response) => {
   //DELETE A PROJECT FROM DATABASE BASED ON ID
 })
 
-app.post('/api/v1/projects/:projectid/palettes', (request, response) => {
+app.post('/api/v1/palettes', (request, response) => {
   //POST A PALETTE TO THE DATABASE BASED ON A PROJECT ID
 })
 
-app.get('/api/v1/projects/:projectid/palettes', (request, response) => {
+app.get('/api/v1/palettes', (request, response) => {
   //GET ALL PALETTES BASED ON A PROJECT ID
 })
 
-app.delete('/api/v1/projects/:projectid/palettes/:paletteid', (request, response) => {
+app.delete('/api/v1/palettes/:paletteid', (request, response) => {
   //DELETE A PALETTE BASED ON ID AND PROJECT ID
 })
 
