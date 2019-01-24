@@ -5,6 +5,7 @@ $('#save-project-form').on('submit', (e) => {
   const projectName = $('#project-name-input').val()
   //Create a POST request to send the project to the server database as a record 
   $('#project-name-input').val("")
+  $('#project-select').append(`<option>${projectName}</option>`)
 })
 
 $('.fa').on('click', (e) => {
