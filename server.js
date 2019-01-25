@@ -1,5 +1,5 @@
 const environment = process.env.NODE_ENV || 'development';
-const configuration = require('./knexfile')[enviornment];
+const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 
 const express = require('express')
@@ -13,11 +13,32 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 
 app.post('/api/v1/projects', (request, response) => {
-  //POST A PROJECT TO DATABASE
+  const project = request.body;
+
+  for (let requiredParameter of ['title']) {
+    if (!project[requiredParameter]) {
+      return response.status(422).send({ error: `Expected format: { title: <String> }. You're missing a "${requiredParameter}" property.` });
+    }
+  }
+
+  database('projects').insert(project, 'id')
+    .then(project => {
+      response.status(201).json({ id: project[0] });
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
 })
 
 app.get('/api/v1/projects', (request, response) => {
   //GET ALL PROJECTS FROM DATABASE
+  database('projects').select()
+    .then(projects => {
+      response.status(200).json(projects);
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    });
 })
 
 app.delete('/api/v1/projects/:projectid', (request, response) => {

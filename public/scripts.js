@@ -4,7 +4,7 @@ $('#save-project-form').on('submit', (e) => {
   const newProject = $('#project-name-input').val();
 
   //Create a POST request to send the project to the server database as a record 
-  postNewProject();
+  postNewProject('http://localhost:3000/api/v1/projects', newProject);
 
   $('#project-name-input').val("");
   $('#project-select').append(`<option>${newProject}</option>`);
@@ -28,14 +28,14 @@ $('#new-palette-form').on('submit', (e) => {
   e.preventDefault();
 
   const projectName = $('#project-select option:selected').text()
+
   const paletteName = $('#new-palette-input').val();
+
   const colorCodes = grabColorPalette();
 
   //CALL HELPER METHOD TO GRAB ALL 5 HEX CODE VALUES FROM PALETTE TO BE SENT TO DATABASE
 
-  //Make a POST request to send the palette name and foreign key (connecting to project name) to database
 
-  //Make a GET request to pull all of the palettes and projects and post them to DOM
 })
 
 
@@ -73,19 +73,17 @@ const grabColorPalette = () => {
 
 
 /* fetch call methods */
-
 postNewProject = (url, data) => {
-
   fetch(url, {
     method: 'POST',
-    body: data,
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    body: JSON.stringify({ title: data })
   }).then(response => response.json())
+    //create a function that will 
     .then(id => console.log(id))
     .catch(error => console.log(error.message))
-
 }
 
 
