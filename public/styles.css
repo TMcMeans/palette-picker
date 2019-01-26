@@ -203,7 +203,7 @@ select:focus {
 .saved-palette {
   /* border: 1px solid #ad2bb0; */
   width: 400px;
-  height: 300px;
+  height: 200px;
   margin-bottom: 10px;
   text-align: center;
   overflow: auto;
@@ -230,4 +230,8 @@ select:focus {
   align-items: flex-end;
   font-size: 0.8em;
   text-align: center;
+}
+
+.fa-trash {
+  cursor: pointer;
 }

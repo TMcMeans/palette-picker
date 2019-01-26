@@ -35,7 +35,10 @@ $('#new-palette-form').on('submit', (e) => {
       postSavedPalette(project_id, paletteName, hexCodes)
     });
 
-  fetchAllPalettes();
+  const palettes = fetchAllPalettes();
+  if (palettes) {
+    displayAllPalettes(palettes)
+  }
   $('#new-palette-input').val("");
 })
 
@@ -89,7 +92,6 @@ displayAllProjects = (projects) => {
 }
 
 displayAllPalettes = (palettes) => {
-  console.log(palettes)
   palettes.forEach(palette => {
     $(`#${palette.project_id}`).append(
       `<div class="small-palette-wrapper" id=${palette.id}>
@@ -102,6 +104,8 @@ displayAllPalettes = (palettes) => {
       </div>`
     )
   })
+
+
 }
 
 /* fetch call methods */
