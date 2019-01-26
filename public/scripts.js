@@ -30,15 +30,23 @@ $('#new-palette-form').on('submit', (e) => {
   const paletteName = $('#new-palette-input').val();
   const hexCodes = grabColorPalette();
 
-  findCurrentProject(projectName)
+  findCurrentProject(null, projectName)
     .then(project_id => {
       postSavedPalette(project_id, paletteName, hexCodes)
-    })
+    });
 
+  fetchAllPalettes();
 
   $('#new-palette-input').val("");
 })
 
+$('.fa-trash').on('click', (e) => {
+  console.log(e.target)
+  console.log('clicking')
+  const id = $('.fa-trash').attr('id')
+  console.log(id)
+  deleteCurrentPalette(id)
+})
 
 /* helper methods */
 const getRandomHexCode = () => {
@@ -78,14 +86,32 @@ const grabColorPalette = () => {
 
 displayAllProjects = (projects) => {
   const displayedProjects = projects.map(project => {
-    return `<div class="saved-palette" id=${project.id}>
-    <p id=${project.id}>${project.title}</p>
+    return `<div class="saved-palette">
+      <p>${project.title}</p>
+      <div class="small-palette-container" id=${project.id}>
+      </div>
     </div>`
   })
 
   $('.saved-projects-section').html(displayedProjects)
 }
 
+displayAllPalettes = (palettes) => {
+  palettes.forEach(palette => {
+    $(`#${palette.project_id}`).append(
+      `<div class="small-palette-wrapper" id=${palette.id}>
+          <div class="small-color-block sm-block1" style="background-color:${palette.color_1}">${palette.color_1}</div>
+          <div class="small-color-block sm-block2" style="background-color:${palette.color_2}">${palette.color_2}</div>
+          <div class="small-color-block sm-block3" style="background-color:${palette.color_3}">${palette.color_3}</div>
+          <div class="small-color-block sm-block4" style="background-color:${palette.color_4}">${palette.color_4}</div>
+          <div class="small-color-block sm-block5" style="background-color:${palette.color_5}">${palette.color_5}</div>
+          <p>${palette.title} <i class="fa fa-trash" id=${palette.id} aria-hidden="true"></i></p>
+      </div>`
+    )
+  })
+
+
+}
 
 /* fetch call methods */
 postNewProject = (url, data) => {
@@ -124,12 +150,31 @@ postSavedPalette = (project_id, paletteName, hexCodes) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(
-      { title: paletteName, color_1: hexCodes[0], color_2: hexCodes[1], color_3: hexCodes[2], color_4: hexCodes[3], color_5: hexCodes[4], project_id })
+      { color_1: hexCodes[0], color_2: hexCodes[1], color_3: hexCodes[2], color_4: hexCodes[3], color_5: hexCodes[4], project_id: project_id, title: paletteName })
   }).then(response => response.json())
     .then(id => console.log(`sending palette #: ${id.id}`))
     .catch(error => console.log(error.message))
 
 }
 
+fetchAllPalettes = async () => {
+  let palettes;
+  try {
+    const response = await fetch('/api/v1/palettes')
+    const data = await response.json()
+    palettes = data;
+  } catch (error) {
+    console.log(error.message)
+  }
 
-$(window).on('load', findCurrentProject)
+  displayAllPalettes(palettes)
+  return palettes;
+}
+
+
+deleteCurrentPalette = (id) => {
+  console.log(id)
+}
+
+$(window).on('load', findCurrentProject);
+$(window).on('load', fetchAllPalettes);
