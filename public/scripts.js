@@ -30,7 +30,7 @@ $('#new-palette-form').on('submit', (e) => {
   const paletteName = $('#new-palette-input').val();
   const hexCodes = grabColorPalette();
 
-  findCurrentProject('/api/v1/projects', projectName)
+  findCurrentProject(projectName)
     .then(project_id => {
       postSavedPalette(project_id, paletteName, hexCodes)
     })
@@ -108,10 +108,10 @@ postNewProject = (url, data) => {
     .catch(error => console.log(error.message))
 }
 
-findCurrentProject = async (url, projectName) => {
+findCurrentProject = async (event, projectName) => {
   let projects;
   try {
-    const response = await fetch(url)
+    const response = await fetch('/api/v1/projects')
     const data = await response.json()
     projects = data;
   } catch (error) {
@@ -119,9 +119,10 @@ findCurrentProject = async (url, projectName) => {
   }
 
   await displayAllProjects(projects)
-
-  const currProject = await projects.find(project => project.title === projectName)
-  return currProject.id
+  if (projectName) {
+    const currProject = await projects.find(project => project.title === projectName)
+    return currProject.id
+  }
 }
 
 postSavedPalette = (project_id, paletteName, hexCodes) => {
@@ -138,3 +139,5 @@ postSavedPalette = (project_id, paletteName, hexCodes) => {
 
 }
 
+
+$(window).on('load', findCurrentProject)
