@@ -86,6 +86,7 @@ displayAllProjects = (projects) => {
   $('.saved-projects-section').html(displayedProjects)
 }
 
+
 /* fetch call methods */
 postNewProject = (url, data) => {
   fetch(url, {
