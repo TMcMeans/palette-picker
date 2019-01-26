@@ -31,9 +31,9 @@ $('#new-palette-form').on('submit', (e) => {
   const hexCodes = grabColorPalette();
 
   findCurrentProject('/api/v1/projects', projectName)
-    .then(project_id => console.log(project_id))
-
-  //Post palette to server based on project name ID
+    .then(project_id => {
+      postSavedPalette(project_id, paletteName, hexCodes)
+    })
 
 
 })
@@ -85,7 +85,7 @@ postNewProject = (url, data) => {
     },
     body: JSON.stringify({ title: data })
   }).then(response => response.json())
-    .then(id => console.log(id))
+    .then(id => console.log(`sending project #: ${id.id}`))
     .catch(error => console.log(error.message))
 }
 
@@ -101,5 +101,19 @@ findCurrentProject = async (url, projectName) => {
 
   const currProject = await projects.find(project => project.title === projectName)
   return currProject.id
+}
+
+postSavedPalette = (project_id, paletteName, hexCodes) => {
+  fetch('/api/v1/palettes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(
+      { title: paletteName, color_1: hexCodes[0], color_2: hexCodes[1], color_3: hexCodes[2], color_4: hexCodes[3], color_5: hexCodes[4], project_id })
+  }).then(response => response.json())
+    .then(id => console.log(`sending palette #: ${id.id}`))
+    .catch(error => console.log(error.message))
+
 }
 
