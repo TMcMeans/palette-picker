@@ -31,7 +31,6 @@ app.post('/api/v1/projects', (request, response) => {
 })
 
 app.get('/api/v1/projects', (request, response) => {
-  //GET ALL PROJECTS FROM DATABASE
   database('projects').select()
     .then(projects => {
       response.status(200).json(projects);
@@ -42,7 +41,7 @@ app.get('/api/v1/projects', (request, response) => {
 })
 
 app.delete('/api/v1/projects/:id', (request, response) => {
-  //DELETE A PROJECT FROM DATABASE BASED ON ID
+  //Not part of MVP for this project but good for UI
 })
 
 app.post('/api/v1/palettes', (request, response) => {
@@ -65,10 +64,16 @@ app.post('/api/v1/palettes', (request, response) => {
 })
 
 app.get('/api/v1/palettes', (request, response) => {
-  //GET ALL PALETTES 
+  database('palettes').select()
+    .then(palettes => {
+      response.status(200).json(palettes);
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    });
 })
 
-app.delete('/api/v1/projects/:id/palettes/:id', (request, response) => {
+app.delete('/api/v1/palettes/:id', (request, response) => {
   //DELETE A PALETTE BASED ON ID AND PROJECT ID
 })
 

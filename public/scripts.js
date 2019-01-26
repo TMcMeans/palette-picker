@@ -35,7 +35,7 @@ $('#new-palette-form').on('submit', (e) => {
       postSavedPalette(project_id, paletteName, hexCodes)
     })
 
-
+  fetchAllPalettes('/api/v1/palettes')
   $('#new-palette-input').val("");
 })
 
@@ -86,6 +86,9 @@ displayAllProjects = (projects) => {
   $('.saved-projects-section').html(displayedProjects)
 }
 
+displayAllPalettes = (palettes) => {
+
+}
 
 /* fetch call methods */
 postNewProject = (url, data) => {
@@ -129,6 +132,20 @@ postSavedPalette = (project_id, paletteName, hexCodes) => {
     .then(id => console.log(`sending palette #: ${id.id}`))
     .catch(error => console.log(error.message))
 
+}
+
+fetchAllPalettes = async (url) => {
+  let palettes;
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    palettes = data;
+  } catch (error) {
+    console.log(error.message)
+  }
+
+  await displayAllPalettes(palettes)
+  console.log(palettes)
 }
 
 
