@@ -7,8 +7,9 @@ body {
   font-family: "Kavoon", cursive;
   /* background: #171717; */
   border: 12px double #ad2bb0;
-  height: 100vh;
+  /* height: 100vh; */
   margin: 10px;
+  overflow: auto;
 }
 
 input[type=text] {
@@ -184,4 +185,49 @@ select {
 
 select:focus {
   outline: none;
+}
+
+/* saved projects section styles */
+
+.saved-projects-section {
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  font-family: 'Alfa Slab One', cursive;
+  margin-top: 20px;
+}
+
+.saved-palette {
+  /* border: 1px solid #ad2bb0; */
+  width: 400px;
+  height: 300px;
+  margin-bottom: 10px;
+  text-align: center;
+  overflow: auto;
+}
+
+.small-palette-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.small-palette-wrapper > p {
+  margin-left: 5px;
+  font-size: 0.9em;
+  width: 100%;
+  text-align: center;
+}
+
+.small-color-block {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  font-size: 0.8em;
+  text-align: center;
 }

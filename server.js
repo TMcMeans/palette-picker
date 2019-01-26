@@ -45,11 +45,11 @@ app.delete('/api/v1/projects/:id', (request, response) => {
 })
 
 app.post('/api/v1/palettes', (request, response) => {
-  const palette = request.body
 
-  for (let requiredParameter of ['title', 'color_1', 'color_2', 'color_3', 'color_4', 'color_5', 'project_id']) {
+  const palette = request.body
+  for (let requiredParameter of ['color_1', 'color_2', 'color_3', 'color_4', 'color_5', 'project_id', 'title']) {
     if (!palette[requiredParameter]) {
-      return response.status(422).send({ error: `Expected format: { title: <String>, color_1: <string>, color_2: <string>, color_3: <string>, color_4: <string>, color_5: <string>, project_id: <number> }. You're missing a "${requiredParameter}" property.` });
+      return response.status(422).send({ error: `Expected format: {  color_1: <string>, color_2: <string>, color_3: <string>, color_4: <string>, color_5: <string>, project_id: <number>, title: <String>, }. You're missing a "${requiredParameter}" property.` });
     }
   }
 
