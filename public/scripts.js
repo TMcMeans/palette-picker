@@ -36,6 +36,7 @@ $('#new-palette-form').on('submit', (e) => {
     })
 
 
+  $('#new-palette-input').val("");
 })
 
 
@@ -75,6 +76,24 @@ const grabColorPalette = () => {
   return palette;
 }
 
+displayAllProjects = (projects) => {
+  const displayedProjects = projects.map(project => {
+    return `<div class="saved-palette">
+    <p id=${project.id}>${project.title}</p>
+    <div class="small-palette-container">
+      <div class="small-palette-wrapper">
+        <div class="small-color-block sm-block1"></div>
+        <div class="small-color-block sm-block2"></div>
+        <div class="small-color-block sm-block3"></div>
+        <div class="small-color-block sm-block4"></div>
+        <div class="small-color-block sm-block5"></div>
+      </div>
+      <p>Warm Palette <i class="fa fa-trash" aria-hidden="true"></i></p>
+    </div>`
+  })
+
+  $('.saved-projects-section').html(displayedProjects)
+}
 
 /* fetch call methods */
 postNewProject = (url, data) => {
@@ -98,6 +117,8 @@ findCurrentProject = async (url, projectName) => {
   } catch (error) {
     console.log(error.message)
   }
+
+  await displayAllProjects(projects)
 
   const currProject = await projects.find(project => project.title === projectName)
   return currProject.id
