@@ -78,17 +78,8 @@ const grabColorPalette = () => {
 
 displayAllProjects = (projects) => {
   const displayedProjects = projects.map(project => {
-    return `<div class="saved-palette">
+    return `<div class="saved-palette" id=${project.id}>
     <p id=${project.id}>${project.title}</p>
-    <div class="small-palette-container">
-      <div class="small-palette-wrapper">
-        <div class="small-color-block sm-block1"></div>
-        <div class="small-color-block sm-block2"></div>
-        <div class="small-color-block sm-block3"></div>
-        <div class="small-color-block sm-block4"></div>
-        <div class="small-color-block sm-block5"></div>
-      </div>
-      <p>Warm Palette <i class="fa fa-trash" aria-hidden="true"></i></p>
     </div>`
   })
 
