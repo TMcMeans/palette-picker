@@ -3,8 +3,7 @@ $('#save-project-form').on('submit', (e) => {
   e.preventDefault();
   const newProject = $('#project-name-input').val();
 
-  //Create a POST request to send the project to the server database as a record 
-  postNewProject('http://localhost:3000/api/v1/projects', newProject);
+  postNewProject('/api/v1/projects', newProject);
 
   $('#project-name-input').val("");
   $('#project-select').append(`<option>${newProject}</option>`);
@@ -28,14 +27,16 @@ $('#new-palette-form').on('submit', (e) => {
   e.preventDefault();
 
   const projectName = $('#project-select option:selected').text()
-
   const paletteName = $('#new-palette-input').val();
+  const hexCodes = grabColorPalette();
 
-  const colorCodes = grabColorPalette();
+  findCurrentProject(projectName)
+    .then(project_id => {
+      postSavedPalette(project_id, paletteName, hexCodes)
+    })
 
-  //CALL HELPER METHOD TO GRAB ALL 5 HEX CODE VALUES FROM PALETTE TO BE SENT TO DATABASE
 
-
+  $('#new-palette-input').val("");
 })
 
 
@@ -66,9 +67,23 @@ const generatePaletteColors = () => {
 }
 
 const grabColorPalette = () => {
-  // GRAB ALL 5 HEX CODE VALUES FROM PALETTE TO BE SENT TO DATABASE
-  //Figure out how to do a querySelectorAll to grab the innerText of each p tag in the color divs
-  const palette = [];
+  let palette = []
+  $(".hex-code").each(function () {
+    const hexCode = $(this).html()
+    palette.push(hexCode)
+  });
+
+  return palette;
+}
+
+displayAllProjects = (projects) => {
+  const displayedProjects = projects.map(project => {
+    return `<div class="saved-palette" id=${project.id}>
+    <p id=${project.id}>${project.title}</p>
+    </div>`
+  })
+
+  $('.saved-projects-section').html(displayedProjects)
 }
 
 
@@ -81,9 +96,40 @@ postNewProject = (url, data) => {
     },
     body: JSON.stringify({ title: data })
   }).then(response => response.json())
-    //create a function that will 
-    .then(id => console.log(id))
+    .then(id => console.log(`sending project #: ${id.id}`))
     .catch(error => console.log(error.message))
 }
 
+findCurrentProject = async (event, projectName) => {
+  let projects;
+  try {
+    const response = await fetch('/api/v1/projects')
+    const data = await response.json()
+    projects = data;
+  } catch (error) {
+    console.log(error.message)
+  }
 
+  await displayAllProjects(projects)
+  if (projectName) {
+    const currProject = await projects.find(project => project.title === projectName)
+    return currProject.id
+  }
+}
+
+postSavedPalette = (project_id, paletteName, hexCodes) => {
+  fetch('/api/v1/palettes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(
+      { title: paletteName, color_1: hexCodes[0], color_2: hexCodes[1], color_3: hexCodes[2], color_4: hexCodes[3], color_5: hexCodes[4], project_id })
+  }).then(response => response.json())
+    .then(id => console.log(`sending palette #: ${id.id}`))
+    .catch(error => console.log(error.message))
+
+}
+
+
+$(window).on('load', findCurrentProject)
