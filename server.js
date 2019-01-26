@@ -57,8 +57,6 @@ app.delete('/api/v1/palettes/:paletteid', (request, response) => {
   //DELETE A PALETTE BASED ON ID AND PROJECT ID
 })
 
-
-
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}`)
 })

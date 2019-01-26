@@ -3,8 +3,7 @@ $('#save-project-form').on('submit', (e) => {
   e.preventDefault();
   const newProject = $('#project-name-input').val();
 
-  //Create a POST request to send the project to the server database as a record 
-  postNewProject('http://localhost:3000/api/v1/projects', newProject);
+  postNewProject('/api/v1/projects', newProject);
 
   $('#project-name-input').val("");
   $('#project-select').append(`<option>${newProject}</option>`);
@@ -28,12 +27,9 @@ $('#new-palette-form').on('submit', (e) => {
   e.preventDefault();
 
   const projectName = $('#project-select option:selected').text()
-
   const paletteName = $('#new-palette-input').val();
+  const hexCodes = grabColorPalette();
 
-  const colorCodes = grabColorPalette();
-
-  //CALL HELPER METHOD TO GRAB ALL 5 HEX CODE VALUES FROM PALETTE TO BE SENT TO DATABASE
 
 
 })
@@ -66,9 +62,13 @@ const generatePaletteColors = () => {
 }
 
 const grabColorPalette = () => {
-  // GRAB ALL 5 HEX CODE VALUES FROM PALETTE TO BE SENT TO DATABASE
-  //Figure out how to do a querySelectorAll to grab the innerText of each p tag in the color divs
-  const palette = [];
+  let palette = []
+  $(".hex-code").each(function () {
+    const hexCode = $(this).html()
+    palette.push(hexCode)
+  });
+
+  return palette;
 }
 
 
@@ -81,7 +81,6 @@ postNewProject = (url, data) => {
     },
     body: JSON.stringify({ title: data })
   }).then(response => response.json())
-    //create a function that will 
     .then(id => console.log(id))
     .catch(error => console.log(error.message))
 }
