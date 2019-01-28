@@ -1,7 +1,7 @@
 # **Palette Picker**
 
 
-Palette Picker is a fullstack application built with Node.js, Express jQuery that allows the user to randomly generate and save color palettes and assign them to projects. This project was designed as a Module 4 solo project at Turing School of Software & Design. My goals were to learn how to recreate the functionality of a popular color picker app, [Coolors](https://coolors.co/) while utilizing a backend database and connecting it to a jquery frontend. 
+Palette Picker is a fullstack application built with Node.js, Express and jQuery that allows the user to randomly generate and save color palettes and assign them to projects. This project was designed as a Module 4 solo project at Turing School of Software & Design. My goals were to learn how to recreate the functionality of a popular color picker app, [Coolors](https://coolors.co/) while utilizing a backend database and connecting it to a jquery frontend. 
 
  
 ### Installation and Setup Instructions
