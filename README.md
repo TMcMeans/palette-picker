@@ -26,8 +26,8 @@ Tanj McMeans- [Github](https://github.com/TMcMeans)
 
 ### Original Wireframe
 
-[Desktop-wireframe](assets/palettepicker_wireframe.png)
+![Desktop-wireframe](assets/palettepicker_wireframe.png)
 
 ### Implementation
 
-[Desktop-view](/assets/palette-picker-screenshot.png)
+![Desktop-view](/assets/palette-picker-screenshot.png)
