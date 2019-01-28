@@ -35,16 +35,17 @@ $('#new-palette-form').on('submit', (e) => {
       postSavedPalette(project_id, paletteName, hexCodes)
     });
 
-  fetchAllPalettes();
+  fetchAllPalettes()
+    .then(palettes => {
+      displayAllPalettes(palettes)
+    })
 
   $('#new-palette-input').val("");
 })
 
-$('.fa-trash').on('click', (e) => {
-  console.log(e.target)
-  console.log('clicking')
-  const id = $('.fa-trash').attr('id')
-  console.log(id)
+$('.saved-projects-section').on('click', (e) => {
+  const trash = e.target
+  const id = $(trash).attr('id')
   deleteCurrentPalette(id)
 })
 
@@ -105,7 +106,7 @@ displayAllPalettes = (palettes) => {
           <div class="small-color-block sm-block3" style="background-color:${palette.color_3}">${palette.color_3}</div>
           <div class="small-color-block sm-block4" style="background-color:${palette.color_4}">${palette.color_4}</div>
           <div class="small-color-block sm-block5" style="background-color:${palette.color_5}">${palette.color_5}</div>
-          <p>${palette.title} <i class="fa fa-trash" id=${palette.id} aria-hidden="true"></i></p>
+          <p>${palette.title} <i class="fa fa-trash" id="${palette.id}" aria-hidden="true"></i></p>
       </div>`
     )
   })
@@ -167,13 +168,23 @@ fetchAllPalettes = async () => {
     console.log(error.message)
   }
 
-  displayAllPalettes(palettes)
-  return palettes;
+  if (palettes) {
+    displayAllPalettes(palettes)
+    return palettes;
+  }
 }
 
-
 deleteCurrentPalette = (id) => {
-  console.log(id)
+  fetch(`/api/v1/palettes/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json())
+    .then(id => console.log(`deleting palette #: ${id.id}`))
+    .catch(error => console.log(error.message))
+
+  fetchAllPalettes();
 }
 
 $(window).on('load', findCurrentProject);
