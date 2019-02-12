@@ -31,15 +31,6 @@ $ knex migrate:latest
 $ knex seed:run      
 ```
 
-In order to see tests, you must stop runnning the server. Type these commands in your local BYOB repo:
-
-```
-Start Running Tests
-
-$ cmd C      
-$ npm test      
-```
-
 ### Lead Developer
 
 Tanj McMeans- [Github](https://github.com/TMcMeans)
